@@ -16,6 +16,18 @@ env:
 	python3 -m venv env
 	($(INVENV) pip install -r requirements.txt )
 
+
+##
+## Brevet Calculator
+##
+
+Create a replacement for the brevet controle time calculator at 
+http://www.rusa.org/octime_acp.html in accordance with ACP rules described 
+at http://www.rusa.org/octime_alg.html.
+Controles are points where a rider must obtain proof of passage, and control[e] 
+times are the minimum and maximum times by which the rider must arrive at the 
+location.
+
 ## Installation
 install: env credentials
 
@@ -26,18 +38,16 @@ brevets/credentials.ini:
 
 
 ##
-## Start, stop, test
+## How to use
 ##
 
-start:	env credentials
-	bash start.sh
+Clone the repository and then CD into the proj4-brevets. 
+Then in your terminal you type "make start" to install the enviornment
+and then to see what port the computer is listening on.Then when you have the 
+port type in your web browser, localhost:portnumber, which the port number 
+will be 8000. 
 
-stop: 	env credentials
-	bash stop.sh
-
-test:	env
-	($(INVENV) cd brevets; nosetests) 
-
+Then there will be a calculator
 
 ##
 ## Preserve virtual environment for git repository
@@ -46,19 +56,6 @@ test:	env
 dist:	env
 	$(INVENV) pip freeze >requirements.txt
 
-
-# 'clean' and 'veryclean' are typically used before checking 
-# things into git.  'clean' should leave the project ready to 
-# run, while 'veryclean' may leave project in a state that 
-# requires re-running installation and configuration steps
-# 
-clean:
-	rm -f *.pyc */*.pyc
-	rm -rf __pycache__ */__pycache__
-
-veryclean:
-	make clean
-	rm -rf env
 
 
 
