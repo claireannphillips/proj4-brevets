@@ -63,3 +63,35 @@ calculator.  Think about what should be included for users and for
 developers.  If it is growing too long, factor details into one or
 more separate documents, with references from the README.
 
+
+
+
+
+Create a replacement for the brevet controle time calculator at 
+http://www.rusa.org/octime_acp.html in accordance with ACP rules described 
+at http://www.rusa.org/octime_alg.html.
+Controles are points where a rider must obtain proof of passage, and control[e] 
+times are the minimum and maximum times by which the rider must arrive at the 
+location.
+
+## Installation
+install: env credentials
+
+credentials: brevets/credentials.ini
+
+brevets/credentials.ini: 
+	echo "You must manually create credentials.ini"
+
+
+##
+## How to use
+##
+
+Clone the repository and then CD into the proj4-brevets. 
+Then in your terminal you type "make start" to install the enviornment
+and then to see what port the computer is listening on.Then when you have the 
+port type in your web browser, localhost:portnumber, which the port number 
+will be 8000. 
+
+
+

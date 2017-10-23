@@ -5,7 +5,7 @@ following rules described at https://rusa.org/octime_alg.html
 and https://rusa.org/pages/rulesForRiders
 """
 import arrow
-import datetime
+
 
 #  Note for CIS 322 Fall 2016:
 #  You MUST provide the following two functions
@@ -17,13 +17,12 @@ import datetime
 #
 
 table = [{'up-to': 200, 'chunk': 200, 'min_s': 15, 'max_s': 34},
-          {'up-to': 400, 'chunk': 200, 'min_s': 15, 'max_s': 32}
+          {'up-to': 400, 'chunk': 200, 'min_s': 15, 'max_s': 32},
           {'up-to': 600, 'chunk': 200, 'min_s': 15, 'max_s': 30},
           {'up-to': 1000, 'chunk': 400, 'min_s': 11.428, 'max_s': 28},
           {'up-to': 1300, 'chunk': 300, 'min_s': 13.333, 'max_s': 26}
           ]
-if control_dist_km > (brevet * 1.20):
-    #ERROR html from HTML on the website and how they send it
+
 
 def open_time(control_dist_km, brevet_dist_km, brevet_start_time):
     """
@@ -38,6 +37,8 @@ def open_time(control_dist_km, brevet_dist_km, brevet_start_time):
        An ISO 8601 format date string indicating the control open time.
        This will be in the same time zone as the brevet start time.
     """
+    if control_dist_km > (brevet_dist_km * 1.20):
+        return ""
     startTime = arrow.get(brevet_start_time)
     time = 0
     currentDist = control_dist_km
@@ -45,12 +46,12 @@ def open_time(control_dist_km, brevet_dist_km, brevet_start_time):
         if currentDist >= entry["chunk"]:
             time += (entry["chunk"] / entry["max_s"]) * 60
             currentDist = currentDist - entry["chunk"]
+        elif control_dist_km > brevet_dist_km:
+            currentDist = 0
         else:
             time += (currentDist / entry["max_s"]) * 60
             currentDist = 0
-    startTime = startTime.shift(minute += time)
-    startTime = startTime%3600/60
-    
+    startTime = startTime.shift(minutes =+ round(time))
     return startTime.isoformat()
 
 def close_time(control_dist_km, brevet_dist_km, brevet_start_time):
@@ -66,18 +67,19 @@ def close_time(control_dist_km, brevet_dist_km, brevet_start_time):
        An ISO 8601 format date string indicating the control close time.
        This will be in the same time zone as the brevet start time.
     """
-    
-    startTime = arrow.get(brevet_start_time)
+    if control_dist_km > (brevet_dist_km * 1.20):
+        return ""
+    closeTime = arrow.get(brevet_start_time)
     time = 0
     currentDist = control_dist_km
     for entry in table:
         if currentDist >= entry["chunk"]:
             time += (entry["chunk"] / entry["min_s"]) * 60
             currentDist = currentDist - entry["chunk"]
+        elif control_dist_km > brevet_dist_km:
+            currentDist = 0
         else:
             time += (currentDist / entry["min_s"]) * 60
             currentDist = 0
-    startTime = startTime.shift(minute += time)
-    startTime = startTime%3600/60
-    
-    return startTime.isoformat()
+    closeTime = closeTime.shift(minutes =+ round(time))
+    return closeTime.isoformat()
