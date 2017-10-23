@@ -8,6 +8,3 @@ assert acp_times.open_time(400, 1000, '2013-09-30T15:34:00.000-07:00') ==  "2013
 assert acp_times.open_time(200, 600, '2013-09-30T15:34:00.000-07:00') ==  "2013-09-30T21:27:00.000-07:00"
 
 assert acp_times.open_time(200, 600, '2017-12-12T15:34:00.000-07:00') ==  "2017-13-30T10:20:00.000-07:00"
-#what about when the distance is 400 and we put 405? how do we test that?
-#people used a variable and then did if statements
-#arrow.get('2013-09-30T15:34:00.000-07:00')
