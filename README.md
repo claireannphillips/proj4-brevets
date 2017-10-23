@@ -1,6 +1,6 @@
 # Project 4:  Brevet time calculator with Ajax
 #Claire Phillips, cphillip@uoregon.edu
-Reimplement the RUSA ACP controle time calculator with flask and ajax
+#Reimplement the RUSA ACP controle time calculator with flask and ajax
 
 ## Project Description
 
@@ -9,7 +9,9 @@ http://www.rusa.org/octime_acp.html in accordance with ACP rules described
 at http://www.rusa.org/octime_alg.html.
 Controles are points where a rider must obtain proof of passage, and control[e] 
 times are the minimum and maximum times by which the rider must arrive at the 
-location.
+location. This code deals with different oddities like when the control is greater
+than the brevet, when the control distance is 20% greater than the brevet, and 
+edge cases.
  
 ##
 ## How to use
