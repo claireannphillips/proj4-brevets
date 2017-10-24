@@ -15,14 +15,14 @@ def test_regular():
 	assert arrow.get(acp_times.open_time(900, 1000, '2013-09-30T00:00:00.000-07:00')) ==  arrow.get("2013-10-01T05:31:00-07:00")
 	assert arrow.get(acp_times.close_time(900, 1000, '2013-09-30T00:00:00.000-07:00')) ==  arrow.get("2013-10-02T18:15:00-07:00")
 	
-def controlTooBig():
+def test_beyond_range():
 	'''
 	Testing when the control is longer than allowed
 	'''
 	assert acp_times.open_time(900, 600, '2013-09-30T00:00:00.000-07:00') == ""
 	assert acp_times.close_time(900, 600, '2013-09-30T00:00:00.000-07:00') == ""
 
-def fencePost():
+def test_fence():
 	'''
 	Testing for the fence post values
 	'''
@@ -39,7 +39,7 @@ def fencePost():
 	assert arrow.get(acp_times.open_time(1000, 1000, '2013-09-30T00:00:00.000-07:00')) ==  arrow.get("2013-10-01T09:05:00-07:00")
 	assert arrow.get(acp_times.close_time(1000, 1000, '2013-09-30T00:00:00.000-07:00')) ==  arrow.get("2013-10-03T03:00:00-07:00")	
 	
-def controlTooBig():
+def test_control():
 	'''
 	Testing for when the control is greater than the brevet 
 	'''
