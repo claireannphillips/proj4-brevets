@@ -129,7 +129,7 @@
     var brevet_distance = $("#brevet_dist_km").val();
     var brevet_startTime = $("#begin_time").val();
     var brevet_date = $("#begin_date").val();
-    var dateTime = brevet_date + brevet_startTime
+    var dateTime = brevet_date + "T" + brevet_startTime
     $.getJSON(TIME_CALC_URL, { km: km, brevet_dist: brevet_distance, time: dateTime }, 
       // response handler
       function(data) {
