@@ -32,12 +32,6 @@ will be 8000. Once there you can type in the brevets and see the calculations.
 I have a nose test module that in the terminal can type "make test" and will run
 the nose tests with different test cases to see if code is working properly.
 
-Talked with Dr. Young and we fixed one tiny thing on project the mornig after due date.
-
-
-
-
-
 
 
 
